@@ -6,7 +6,7 @@ on:
       push:
         default: true
         required: false
-        type: bool
+        type: boolean
       tags:
         required: true
         type: string

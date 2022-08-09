@@ -1,6 +1,14 @@
 name: 'SemVer'
 
 on:
+  workflow_call:
+    secrets:
+      github-token:
+        description: 'A github token passed from the caller workflow'
+        required: true
+      npm-token:
+        description: 'A npm token passed from the caller workflow'
+        required: false
   push:
     branches:
       - master
@@ -23,6 +31,6 @@ jobs:
         run: npm install -g semantic-release @semantic-release/github
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.github-token }}
+          NPM_TOKEN: ${{ secrets.npm-token }}
         run: npx semantic-release

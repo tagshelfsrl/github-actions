@@ -9,7 +9,7 @@ on:
         type: boolean
       tags:
         required: false
-        type: list
+        type: string
         default: |
           type=ref,event=branch
           type=ref,event=pr
@@ -17,7 +17,7 @@ on:
           type=semver,pattern={{major}}.{{minor}}
       images:
         required: true
-        type: list
+        type: string
 
 jobs:
   docker:

@@ -3,8 +3,8 @@ name: 'SemVer'
 on:
   workflow_call:
     secrets:
-      GITHUB_TOKEN:
-        required: true
+      token:
+        required: false
 
   push:
     branches:
@@ -27,10 +27,17 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         run: npm install -g semantic-release @semantic-release/github @semantic-release/git
-      - name: Release
+      - name: Release self
+        if: github.event_name == 'push'
+        run: npx semantic-release
         env:
           CI: true
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Release
+        if: github.event_name == 'workflow_call'
         run: npx semantic-release
+        env:
+          CI: true
+          GH_TOKEN: ${{ inputs.token }}
+          GITHUB_TOKEN: ${{ inputs.token }}

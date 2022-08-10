@@ -27,17 +27,9 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         run: npm install -g semantic-release @semantic-release/github @semantic-release/git
-      - name: Release self
-        if: github.event_name == 'push'
-        run: npx semantic-release
-        env:
-          CI: true
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Release
-        if: github.event_name == 'workflow_call'
         run: npx semantic-release
         env:
           CI: true
-          GH_TOKEN: ${{ inputs.token }}
-          GITHUB_TOKEN: ${{ inputs.token }}
+          GH_TOKEN: ${{ inputs.token == '' && secrets.GITHUB_TOKEN || inputs.token }}
+          GITHUB_TOKEN: ${{ inputs.token == '' && secrets.GITHUB_TOKEN || inputs.token }}

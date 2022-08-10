@@ -25,6 +25,10 @@ jobs:
         run: npm install -g semantic-release @semantic-release/github @semantic-release/git
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI: true
+          # Token needs to be different than defaults GITHUB_TOKEN in order for
+          # subsequent triggers to fire.
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release

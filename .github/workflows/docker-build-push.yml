@@ -26,16 +26,14 @@ on:
         required: false
         type: string
         default: "."
-      build-args:
-        required: false
-        type: string
-        default: ""
     secrets:
       host:
         required: false
       user:
         required: false
       pass:
+        required: false
+      build-args:
         required: false
 
 jobs:

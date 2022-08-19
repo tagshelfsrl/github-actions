@@ -67,4 +67,4 @@ jobs:
           push: ${{ inputs.push }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: ${{ inputs.build-args }}
+          build-args: ${{ secrets.build-args }}

@@ -26,6 +26,10 @@ on:
         required: false
         type: string
         default: "."
+      build-args:
+        required: false
+        type: string
+        default: ""
     secrets:
       host:
         required: false
@@ -65,3 +69,4 @@ jobs:
           push: ${{ inputs.push }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: ${{ inputs.build-args }}

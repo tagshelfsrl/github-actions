@@ -11,8 +11,8 @@ on:
         required: false
         type: string
         default: |
-          type=raw,enable=${{ github.ref == format('refs/heads/{0}', 'development') }},priority=200,prefix=,suffix=,value=latest
-          type=raw,enable=${{ github.ref == format('refs/heads/{0}', 'master') }},priority=200,prefix=,suffix=,value=stable
+          type=raw,enable=${{ github.ref == format('refs/heads/{0}', 'development') }},prefix=,suffix=,value=latest
+          type=raw,enable=${{ github.ref == format('refs/heads/{0}', 'master') }},prefix=,suffix=,value=stable
           type=ref,event=tag
           type=ref,suffix=-{{sha}},event=branch
           type=ref,suffix=-{{sha}},event=pr
